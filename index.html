@@ -15,7 +15,6 @@
             //
             function dynIframeSize(ifmId){
                 var ifm = null;
-                console.log(ifmId);
                 if(document.getElementById){
                     ifm = document.getElementById(ifmId);
                 }else{
@@ -23,17 +22,19 @@
                 }
 
                 if(ifm && !windown.opear){
+                    ifm.style.display="block";
                     console.log(ifm.height);
                     console.log(ifm.width);
-                    ifm.style.display="block";
                     if(ifm.contentDocument && ifm.contentDocument.body.offsetHeight){
                         ifm.height = ifm.contentDocument.body.offsetHeight + 20;
                         ifm.width  = ifm.contentDocument.body.scrollWidth  + 20;
+                    }else if(ifm.Document && ifm.Document.body.scrollHeight){
+                        ifm.height = ifm.Document.body.scrollHeight;
+                        ifm.width = ifm.Document.body.scrollWidth;
                     }
                     console.log(ifm.height);
                     console.log(ifm.width);
                 }
-
             }
         </script>
     </head>
