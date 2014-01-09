@@ -2,9 +2,38 @@
 <html>
     <head>
         <title>VimScript Collect</title>
+        <script type="text/javascript" language="javascript"> 
+            //
+            function iFrameHeight(){
+                var ifm = document.getElementById("iframepage");
+                var subWeb = document.frames? document.frames["iframepage"].document:ifm.contentDocument;
+
+                if(ifm != null && subWeb != null){
+                    ifm.height = subWeb.body.scrollHeight;
+                }
+            }
+            //
+            function dynIframeSize(ifmId){
+                var ifm = null;
+                if(document.getElementById){
+                    ifm = document.getElementById(ifmId);
+                }else{
+                    eval('pTar = '+ifmId+';');
+                }
+
+                if(ifm && !windown.opear){
+                    ifm.style.display="block";
+                    if(ifm.contentDocument && ifm.contentDocument.body.offsetHeight){
+                        ifm.height = ifm.contentDocument.body.offsetHeight + 20;
+                        ifm.width  = ifm.contentDocument.body.scrollWidth  + 20;
+                    }
+                }
+
+            }
+        </script>
     </head>
     <body>
-        <iframe src="http://www.baidu.com">
+        <iframe id="iframepage" name="iframepage" src="http://www.vim.org/search.php" frameBorder=0 scrolling=auto marginheight="0" width="100%" onLoad="iFrameHeight()">
         </iframe>
     </body>
 </html>
